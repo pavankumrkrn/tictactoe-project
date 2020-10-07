@@ -1,0 +1,53 @@
+
+<div class="container">
+<div class="row">
+    <div class="col-md-4"><h3>Current Player is : {{ player }} </h3>
+        <button class="btn btn-primary" (click)="startNewGame()">Start new game</button></div>
+    <div class="col-md-3"><h3>Board Size</h3>
+            <ul><li><button class="btn btn-light gridButton" (click)="newGame(3, 'indirect')">3 X 3</button></li>
+                <li><button class="btn btn-light gridButton" (click)="newGame(4, 'indirect')">4 X 4</button></li>
+                <li><button class="btn btn-light gridButton" (click)="newGame(5, 'indirect')">5 X 5</button></li>
+            </ul>
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-md-10">
+<main [ngStyle]="{gridTemplateColumns: getColumns()}">
+    <app-square id="app-square"
+    *ngFor="let val of squares; let i = index"
+    [value]="val"
+    (click)="makeMove(i)">
+    </app-square>
+</main></div>
+<div class="col-md-2">
+    <div class="row" >
+        <label class="xy">X wins</label>
+        <input id="xwins" 
+        type="number" 
+        class="form-control" 
+        disabled="true" 
+        value="{{xwins}}" 
+        [ngStyle]="{color: getColor(1)}">
+    </div>
+    <hr>
+    <div class="row">
+        <label class="xy">Y wins</label>
+        <input type="number" 
+        class="form-control" 
+        disabled="true" 
+        value="{{ywins}}" 
+        [ngStyle]="{color: getColor(2)}">
+    </div>
+    <hr>
+    <div class="row">
+        <label class="draw">Draw Count</label>
+        <input type="number" 
+        class="form-control" 
+        disabled="true" 
+        value="{{ drawnGames }}">
+    </div>
+</div>
+</div>
+</div>

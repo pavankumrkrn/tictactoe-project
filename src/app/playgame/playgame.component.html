@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="container">
+        <div class="row">
+         <div class="col">
+            <button type="button" 
+            (click)="getGameMenu('computer')" 
+            style="cursor: pointer;"
+            data-toggle="modal" data-target="#exampleModal">Play Vs Computer</button>
+         </div>
+         <div class="col">
+            <button type="button" 
+            (click)="getGameMenu('player')" 
+            style="cursor: pointer;"
+            data-toggle="modal" data-target="#exampleModal">Play Vs Player</button>
+         </div>   
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: black;">
+            {{ gameVsComputer ? 'New Game with Computer' : 'New Game with Player' }}</h5>
+        </div>
+        <form [formGroup]="newGameForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="">Game Mode</label>
+                    <select name="" 
+                    id="" class="form-control"
+                    formControlName="gameMode">
+                        <option value="">Select</option>
+                        <option value="3"> 3 X 3</option>
+                        <option value="4"> 4 X 4</option>
+                        <option value="5"> 5 X 5</option>
+                    </select>
+                    <small 
+                    *ngIf="newGameForm.get('gameMode').touched && !newGameForm.get('gameMode').valid">
+                    please select game mode</small>
+                </div>
+                <div class="col-md-6">
+                    <label for="">Winning Count</label>
+                    <input type="number" id="winningCount"
+                    class="form-control" 
+                    placeholder="Enter winning count"
+                    formControlName="winningCount">
+                    <small 
+                    *ngIf="newGameForm.get('winningCount').touched && !newGameForm.get('winningCount').valid">
+                    please enter a valid number</small>
+                </div>
+            </div>
+            <br>
+            <div class="row" >
+                <div class="col-md-6">
+                    <label for="">Games Limit</label>
+                    <input type="number" id="gamesLimit"
+                    class="form-control" 
+                    placeholder="Enter games limit"
+                    formControlName="gamesLimit">
+                    <small 
+                    *ngIf="newGameForm.get('gamesLimit').touched && !newGameForm.get('gamesLimit').valid">
+                    please enter a valid number</small>
+                </div>
+                <div class="col-md-6" *ngIf="gameVsComputer">
+                    <label for="">Game Level</label>
+                    <select name="" 
+                    id="" 
+                    class="form-control"
+                    formControlName="gameType">
+                        <option value="">Select</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                    <small 
+                    *ngIf="newGameForm.get('gameType').touched && !newGameForm.get('gameType').valid">
+                    please enter game type</small>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" [disabled]="newGameForm.invalid">Start Game</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>

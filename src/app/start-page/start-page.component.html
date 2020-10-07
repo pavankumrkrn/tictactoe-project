@@ -1,0 +1,59 @@
+<div class="container">
+    <form [formGroup]="loginForm">
+        <div class="container middlebox">
+            <div class="row">
+                <div class="col-md-4 box">              
+                        <div class="row">
+                            <div class="col-md-11">
+                                <label for="">Username</label>
+                                <input type="text" 
+                                class="form-control" 
+                                id="username"
+                                formControlName='username'>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-11">
+                                <label for="">Password</label>
+                            <input type="text" 
+                            class="form-control"
+                            formControlName='password'>
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row" *ngIf='isSignUp'>
+                            <div class="col-md-11">
+                            <label for="">Email ID</label>
+                            <input type="email" class="form-control"
+                            formControlName='email'>
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-11">
+                            <button type="submit" 
+                            class="btn btn-primary"
+                            [disabled]='!loginForm.valid'
+                            (click)="loginUser()">{{ isSignUp ? 'Sign Up' : 'Login' }}</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ isSignUp ? 'Existing User ???' : 'New User ???' }}
+                        </div>
+                        <div class="col-md-5">
+                            <a href="/#" (click)="signUpInit()">{{ isSignUp ? 'Login' : 'Sign Up' }}</a>
+                        </div>
+                    </div>                      
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <img src="https://miro.medium.com/max/800/1*d4FOXNGI6AbMeZh7T0andA.jpeg" alt="" class="img">
+                    </div>
+                </div>      
+            </div>         
+        </div>
+    </form>
+</div>
